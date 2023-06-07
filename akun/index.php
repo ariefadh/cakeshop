@@ -165,21 +165,21 @@ include 'unit.php';
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
   <script>
-    $(document).ready(function() {
-      $(document).on('click', '.toggle-password', function() {
-        var passwordField = $(this).closest('.row').find('input[type="password"]');
-        var eyeIcon = $(this).find('i');
+  $(document).ready(function() {
+    $(document).on('click', '.toggle-password', function() {
+      var passwordField = $(this).closest('td').find('.password-field');
+      var eyeIcon = $(this).find('i');
 
-        if (passwordField.attr('type') === 'password') {
-          passwordField.attr('type', 'text');
-          eyeIcon.removeClass('ti-eye').addClass('ti-eye-off');
-        } else {
-          passwordField.attr('type', 'password');
-          eyeIcon.removeClass('ti-eye-off').addClass('ti-eye');
-        }
-      });
+      if (passwordField.attr('type') === 'password') {
+        passwordField.attr('type', 'text');
+        eyeIcon.removeClass('ti-eye').addClass('ti-eye-off');
+      } else {
+        passwordField.attr('type', 'password');
+        eyeIcon.removeClass('ti-eye-off').addClass('ti-eye');
+      }
     });
-  </script>
+  });
+</script>
 
   <script src="../public/js/dashboard-user.js"></script>
   <script src="../public/js/tabler.min.js?1684106062" defer></script>

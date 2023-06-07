@@ -78,7 +78,7 @@
                     $sql = " SELECT COUNT(*) AS total_produk FROM produk";
                     $result = mysqli_query($koneksi, $sql);
                     $row = mysqli_fetch_assoc($result);
-                    $total_customer = $row['total_produk'];
+                    $jumlah_produk = $row['total_produk'];
                     ?>
 
                     <center><span class="text-success "><?= $row['total_produk']; ?>+</span></center>
@@ -96,16 +96,13 @@
                     </div>
                   </div>
                   <div class="h1">
-
                     <?php
-                    $sql = " SELECT COUNT(*) AS total_terjual FROM keranjang detail";
+                    $sql = "SELECT COUNT(*) AS total_data FROM keranjang_detail";
                     $result = mysqli_query($koneksi, $sql);
                     $row = mysqli_fetch_assoc($result);
-                    $total_customer = $row['total_terjual'];
+                    $total_data = $row['total_data'];
                     ?>
-
-                    <center><span class="text-success"><?= $row['total_terjual']; ?>+</span></center>
-
+                    <center><span class="text-success"><?= $total_data; ?>+</span></center>
                   </div>
                 </div>
               </div>
@@ -133,7 +130,7 @@
                 </div>
               </div>
             </div>
-           
+
 
           </div>
         </div>
