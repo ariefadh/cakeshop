@@ -27,8 +27,8 @@
           <div class="mb-3">
             <label for="pass" class="form-label">Password</label>
             <div class="input-group">
-              <input type="password" class="form-control" id="passwd" name="pass">
-              <button class="btn btn-outline-secondary" type="button" onclick="togglePassword()" id="toggle-Pass">
+              <input type="password" class="form-control password-field" id="passwd" name="pass" value="<?= $row['pass']; ?>" required>
+              <button class="btn btn-outline-secondary toggle-password" type="button" onclick="togglePassword()" id="toggle-Pass">
                 <i class="ti ti-eye"></i>
               </button>
             </div>

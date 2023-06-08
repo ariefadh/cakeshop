@@ -163,28 +163,36 @@ if (isset($_SESSION['nama_customer'])) {
                             <tbody>
                                 <?php
                                 $total_harga = 0;
-                                foreach ($_SESSION["keranjang"] as $id_produk => $jumlah) :
-                                    $ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk=$id_produk");
-                                    $pecah = $ambil->fetch_assoc();
-                                    $harga_produk = $pecah["harga_produk"];
-                                    $subtotal_harga = $pecah["harga_produk"] * $jumlah;
-                                    $total_harga += $subtotal_harga;
-                                    $stok_produk = $pecah["stok_produk"]; // Menambahkan variabel stok_produk
+                                if (isset($_SESSION["keranjang"]) && is_array($_SESSION["keranjang"])) {
+                                    foreach ($_SESSION["keranjang"] as $id_produk => $jumlah) {
+                                        $ambil = $koneksi->query("SELECT * FROM produk WHERE id_produk=$id_produk");
+                                        $pecah = $ambil->fetch_assoc();
+                                        $harga_produk = $pecah["harga_produk"];
+                                        $subtotal_harga = $pecah["harga_produk"] * $jumlah;
+                                        $total_harga += $subtotal_harga;
+                                        $stok_produk = $pecah["stok_produk"];
+
+                                        // Menambahkan kondisi untuk menampilkan data hanya jika stok_produk ada
+                                        if ($stok_produk > 0) {
                                 ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $pecah["nama_produk"]; ?>
-                                            <br>
-                                            <small>(Stok: <?php echo $stok_produk; ?>)</small> <!-- Menampilkan stok produk -->
-                                        </td>
-                                        <td><?php echo $jumlah ?></td>
-                                        <td>Rp<?php echo number_format($pecah["harga_produk"]); ?> X <?php echo $jumlah; ?></td>
-                                        <td>Rp<?php echo number_format($subtotal_harga); ?></td>
-                                        <td>
-                                            <a href="delcart.php?id=<?php echo $id_produk ?>" class="btn btn-danger btn-xs">hapus</a>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
+                                            <tr>
+                                                <td>
+                                                    <?php echo $pecah["nama_produk"]; ?>
+                                                    <br>
+                                                    <small>(Stok: <?php echo $stok_produk; ?>)</small> <!-- Menampilkan stok produk -->
+                                                </td>
+                                                <td><?php echo $jumlah ?></td>
+                                                <td>Rp<?php echo number_format($pecah["harga_produk"]); ?> X <?php echo $jumlah; ?></td>
+                                                <td>Rp<?php echo number_format($subtotal_harga); ?></td>
+                                                <td>
+                                                    <a href="delcart.php?id=<?php echo $id_produk ?>" class="btn btn-danger btn-xs">hapus</a>
+                                                </td>
+                                            </tr>
+                                <?php
+                                        }
+                                    }
+                                }
+                                ?>
                             </tbody>
                         </table>
                     </div>
