@@ -179,6 +179,31 @@ include 'unit.php';
       }
     });
   });
+    function togglePasswordVisibility() {
+    var passwordInput = document.getElementById("passw");
+    var toggleButton = document.getElementById("togglePass");
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.innerHTML = "<i class='ti ti-eye'></i>";
+    } else {
+      passwordInput.type = "password";
+      toggleButton.innerHTML = "<i class='ti ti-eye-slash'></i>";
+    }
+  }
+  function togglePassword() {
+    var passwordInput = document.getElementById("passwd");
+    var toggleButton = document.getElementById("toggle-Pass");
+
+    if (passwordInput.type === "password") {
+      passwordInput.type = "text";
+      toggleButton.innerHTML = "<i class='ti ti-eye'></i>";
+    } else {
+      passwordInput.type = "password";
+      toggleButton.innerHTML = "<i class='ti ti-eye-slash'></i>";
+    }
+  }
+
 </script>
 
   <script src="../public/js/dashboard-user.js"></script>
