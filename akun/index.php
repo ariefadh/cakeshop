@@ -119,7 +119,7 @@ include 'unit.php';
                                 <i class="ti ti-eye"></i>
                               </button>
                             </div>
-                            <input type="password" class="form-control password-field" value="<?= $row['pass']; ?>" readonly>
+                            <div class="col password-field"><?= $row['pass']; ?></div>
                           </div>
                         </td>
                         <td><?= $row['level']; ?></td>
@@ -172,10 +172,10 @@ include 'unit.php';
 
         if (passwordField.attr('type') === 'password') {
           passwordField.attr('type', 'text');
-          eyeIcon.removeClass('ti-eye').addClass('ti-eye-off');
+          eyeIcon.removeClass('ti-eye-off').addClass('ti-eye');
         } else {
           passwordField.attr('type', 'password');
-          eyeIcon.removeClass('ti-eye-off').addClass('ti-eye');
+          eyeIcon.removeClass('ti-eye').addClass('ti-eye-off');
         }
       });
     });
