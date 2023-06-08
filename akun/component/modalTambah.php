@@ -40,8 +40,8 @@
           <div class="mb-3">
             <label for="pass" class="form-label">Password</label>
             <div class="input-group">
-              <input type="password" class="form-control" id="pass" name="pass">
-              <button class="btn btn-outline-secondary toggle-password" type="button">
+              <input type="password" class="form-control" id="passw" name="pass">
+              <button class="btn btn-outline-secondary" type="button" onclick="togglePasswordVisibility()" id="togglePass">
                 <i class="ti ti-eye"></i>
               </button>
             </div>

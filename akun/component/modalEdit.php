@@ -2,7 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="editUserModal<?= $row['id_akun']; ?>Label">Tambah User</h1>
+        <h1 class="modal-title fs-5" id="editUserModal<?= $row['id_akun']; ?>Label">Edit User</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -25,10 +25,15 @@
           </div>
 
           <div class="mb-3">
-            <label for="pass" class="col-form-label">Password</label>
-            <input type="password" class="form-control" id="pass" name="pass" value="<?= $row['pass']; ?>" required>
+            <label for="pass" class="form-label">Password</label>
+            <div class="input-group">
+              <input type="password" class="form-control" id="pass" name="pass" value="<?= $row['pass']; ?>" >
+              <button class="btn btn-outline-secondary toggle-password" type="button">
+                <i class="ti ti-eye"></i>
+              </button>
+            </div>
           </div>
-
+          
           <div class="mb-5">
             <label for="level" class="col-form-label">Level</label>
             <select class="form-select" name="level" required>

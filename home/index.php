@@ -102,7 +102,9 @@
                     $row = mysqli_fetch_assoc($result);
                     $total_data = $row['total_data'];
                     ?>
+
                     <center><span class="text-success"><?= $total_data; ?>+</span></center>
+
                   </div>
                 </div>
               </div>
@@ -130,51 +132,45 @@
                 </div>
               </div>
             </div>
-
-
           </div>
-        </div>
-      </div>
 
-      <!-- Card 2 -->
-      <div class="row mt-3 m-2">
+          <!-- Card 2 -->
+          <div class="row mt-3">
 
-        <!-- Table Staff -->
-        <div class="col-7">
-          <div class="card">
-            <div class="card-body">
-              <div class="d-flex align-items-center mb-3">
-                <div class="subheader">Staff</div>
-                <div class="ms-auto lh-1">
-                  <a href="" class="btn btn-outline btn-sm rounded text-decoration-none text-dark" role="button" data-bs-toggle="modal" data-bs-target="#tambahStaff">
-                    <i class="ti ti-plus"></i>
-                  </a>
-                </div>
-              </div>
+            <!-- Table Staff -->
+            <div class="col-7">
+              <div class="card">
+                <div class="card-body">
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="subheader">Staff</div>
+                    <div class="ms-auto lh-1">
+                      <a href="" class="btn btn-outline btn-sm rounded text-decoration-none text-dark" role="button" data-bs-toggle="modal" data-bs-target="#tambahStaff">
+                        <i class="ti ti-plus"></i>
+                      </a>
+                    </div>
+                  </div>
 
-              <table id="tabelStaff" class="hover display" style="width:100%">
-                <thead>
-                  <tr>
-                    <th class="col-1">#</th>
-                    <th class="m-0">ID Staff</th>
-                    <th>Nama Staff</th>
-                    <th>Posisi</th>
-                    <th class="m-0">Action</th>
-                  </tr>
+                  <table id="tabelStaff" class="hover display" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th class="col-1">#</th>
+                        <th class="m-0">ID Staff</th>
+                        <th>Nama Staff</th>
+                        <th>Posisi</th>
+                        <th class="m-0">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sql = "SELECT  * FROM staff";
 
-                </thead>
-                <tbody>
-                  <?php
-                  $sql = "SELECT  * FROM staff";
-
-                  if (!$result =  mysqli_query($koneksi, $sql)) {
-                    die('Error:' . mysqli_error($koneksi));
-                  } else {
-                    if (mysqli_num_rows($result) > 0) {
-                      $count = 1;
-                      while ($row =  mysqli_fetch_assoc($result)) {
-                  ?>
-
+                      if (!$result =  mysqli_query($koneksi, $sql)) {
+                        die('Error:' . mysqli_error($koneksi));
+                      } else {
+                        if (mysqli_num_rows($result) > 0) {
+                          $count = 1;
+                          while ($row =  mysqli_fetch_assoc($result)) {
+                      ?>
                         <tr>
                           <td><?= $count; ?></td>
                           <td><?= $row['id_staff']; ?></td>
@@ -193,59 +189,53 @@
                             </form>
                           </td>
                         </tr>
-
-                  <?php
-                        $count++;
-                        include '../home/component/modalEditStaff.php';
-                      }
-                    } else {
-                      echo '';
-                    }
-                  } ?>
-                </tbody>
-
-
-              </table>
-
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Tabel Customer -->
-        <div class="col">
-          <div class="card">
-            <div class="card-body">
-
-              <div class="d-flex align-items-center mb-3">
-                <div class="subheader">Customer</div>
-                <div class="ms-auto lh-1">
-                  <button type="button" class="btn btn-outline btn-sm rounded text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#tambahCustomer">
-                    <i class="ti ti-plus"></i>
-                  </button>
+                      <?php
+                            $count++;
+                            include '../home/component/modalEditStaff.php';
+                          }
+                        } else {
+                          echo '';
+                        }
+                      } ?>
+                    </tbody>
+                  </table>
                 </div>
               </div>
+            </div>
 
-              <table id="tabelCustomer" class="hover display" style="width:100%">
-                <thead>
-                  <tr>
-                    <th class="col-1">#</th>
-                    <th>Nama Customer</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <?php
-                  $sql = "SELECT  * FROM customer";
+            <!-- Tabel Customer -->
+            <div class="col">
+              <div class="card">
+                <div class="card-body">
 
-                  if (!$result =  mysqli_query($koneksi, $sql)) {
-                    die('Error:' . mysqli_error($koneksi));
-                  } else {
-                    if (mysqli_num_rows($result) > 0) {
-                      $count = 1;
-                      while ($row =  mysqli_fetch_assoc($result)) {
-                  ?>
+                  <div class="d-flex align-items-center mb-3">
+                    <div class="subheader">Customer</div>
+                    <div class="ms-auto lh-1">
+                      <button type="button" class="btn btn-outline btn-sm rounded text-decoration-none text-dark" data-bs-toggle="modal" data-bs-target="#tambahCustomer">
+                        <i class="ti ti-plus"></i>
+                      </button>
+                    </div>
+                  </div>
 
+                  <table id="tabelCustomer" class="hover display" style="width:100%">
+                    <thead>
+                      <tr>
+                        <th class="col-1">#</th>
+                        <th>Nama Customer</th>
+                        <th>Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <?php
+                      $sql = "SELECT  * FROM customer";
+
+                      if (!$result =  mysqli_query($koneksi, $sql)) {
+                        die('Error:' . mysqli_error($koneksi));
+                      } else {
+                        if (mysqli_num_rows($result) > 0) {
+                          $count = 1;
+                          while ($row =  mysqli_fetch_assoc($result)) {
+                      ?>
                         <tr>
                           <td><?php echo $row['id_customer']; ?></td>
                           <td><?php echo $row['nama_customer']; ?></td>
@@ -262,23 +252,23 @@
                             </form>
                           </td>
                         </tr>
+                      <?php
+                            include '../home/component/modalEditCustomer.php';
+                            $count++;
+                          }
+                        } else {
+                          echo '';
+                        }
+                      } ?>
+                    </tbody>
+                  </table>
 
-                  <?php
-                        include '../home/component/modalEditCustomer.php';
-                        $count++;
-                      }
-                    } else {
-                      echo '';
-                    }
-                  } ?>
-                </tbody>
-              </table>
-
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div> <!-- body page -->
   </div>
 
@@ -290,8 +280,6 @@
   <?php
   include '../home/component/modalTambahCustomer.php';
   include '../home/component/modalTambahStaff.php';
-  include '../transaksi/component/modalEdit.php';
-
   ?>
 
   <!-- Libs JS -->
