@@ -120,6 +120,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="page-body">
                 <div class="container-xl">
                     <div class="card p-5">
+                        <div class="col-4 mb-3">
+                            <a href="index.php" class="btn btn-secondary"><i class="ti ti-arrow-left"></i> Kembali</a>
+                        </div>
 
                         <!-- Display error message if exists -->
                         <?php if (isset($error)) { ?>
@@ -131,34 +134,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="mb-3">
                                 <label for="id_produk" class="form-label">ID Produk</label>
-                                <input type="text" class="form-control" id="id_produk" name="id_produk" required>
+                                <input type="number" class="form-control" id="id_produk" name="id_produk" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="nama_produk" class="form-label">Nama Produk</label>
+                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" required>
+                            </div>
+                            <div class="row g-4 mb-3">
+                                <div class="col-md-3">
+                                    <label for="stok_produk" class="form-label">Stok Produk</label>
+                                    <input type="number" class="form-control" id="stok_produk" name="stok_produk" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="harga_produk" class="form-label">Harga Produk</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text" id="basic-harga_produk">Rp</span>
+                                        <input type="number" class="form-control" id="harga_produk" name="harga_produk" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tgl_prod" class="form-label">Tanggal Produksi</label>
+                                    <input type="date" class="form-control" id="tgl_prod" name="tgl_prod" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="tgl_exp" class="form-label">Tanggal Kadaluarsa</label>
+                                    <input type="date" class="form-control" id="tgl_exp" name="tgl_exp" required>
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="foto_produk" class="form-label">Upload Foto</label>
                                 <input type="file" class="form-control" id="foto_produk" name="foto_produk" accept="image/*" required>
                             </div>
-
-                            <div class="mb-3">
-                                <label for="nama_produk" class="form-label">Nama Produk</label>
-                                <input type="text" class="form-control" id="nama_produk" name="nama_produk" required>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary  col-md-4">Simpan</button>
                             </div>
-                            <div class="mb-3">
-                                <label for="stok_produk" class="form-label">Stok Produk</label>
-                                <input type="number" class="form-control" id="stok_produk" name="stok_produk" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="harga_produk" class="form-label">Harga Produk</label>
-                                <input type="number" class="form-control" id="harga_produk" name="harga_produk" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tgl_prod" class="form-label">Tanggal Produksi</label>
-                                <input type="date" class="form-control" id="tgl_prod" name="tgl_prod" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="tgl_exp" class="form-label">Tanggal Kadaluarsa</label>
-                                <input type="date" class="form-control" id="tgl_exp" name="tgl_exp" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </form>
 
                     </div>

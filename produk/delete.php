@@ -11,9 +11,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Lakukan koneksi ke database, pastikan variabel $koneksi sudah diinisialisasi sebelumnya
     require 'unit.php';
 
+    // Ambil informasi produk sebelum dihapus
+    $sql = "SELECT foto_produk FROM produk WHERE id_produk = '$id_produk'";
+    $result = mysqli_query($koneksi, $sql);
+    $row = mysqli_fetch_assoc($result);
+
     // Hapus produk dari database
     $sql = "DELETE FROM produk WHERE id_produk = '$id_produk'";
     if (mysqli_query($koneksi, $sql)) {
+      // Jika penghapusan berhasil, hapus juga file gambar terkait
+      if (!empty($row['foto_produk'])) {
+        $targetDir = '../img/shop/';
+        unlink($targetDir . $row['foto_produk']);
+      }
       // Jika penghapusan berhasil, redirect ke halaman produk dengan pesan sukses
       header("Location: index.php?status=success");
       exit();
@@ -28,4 +38,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Jika tidak ada data yang dikirim melalui metode POST atau tidak ada input "id" dalam request POST, maka redirect ke halaman produk dengan pesan error
 header("Location: index.php?status=error");
 exit();
-?>
