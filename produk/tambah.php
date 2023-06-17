@@ -3,32 +3,73 @@ $page = 'produk';
 
 session_start();
 if (!isset($_SESSION['userweb'])) {
-    header("Location: ..\login\index.php");
+    header("Location: ../login/index.php");
 }
 
 require 'unit.php';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_produk = $_POST['id_produk'];
-    $foto_produk = $_POST['foto_produk'];
     $nama_produk = $_POST['nama_produk'];
     $stok_produk = $_POST['stok_produk'];
     $harga_produk = $_POST['harga_produk'];
     $tgl_prod = $_POST['tgl_prod'];
     $tgl_exp = $_POST['tgl_exp'];
 
+    if ($_FILES['foto_produk']['error'] == 4) {
+        echo "<script>
+                alert('Harap pilih gambar terlebih dahulu!');
+                document.location.href = 'tambah.php';
+            </script>";
+        return false;
+    }
+
+    $targetDir = '../img/shop/';
+    if (!is_dir($targetDir)) {
+        mkdir($targetDir, 0755, true);
+    }
+
+    $ekstensiGambar = explode('.', $_FILES['foto_produk']['name']);
+    $ekstensiGambar = strtolower(end($ekstensiGambar));
+    $nama_file_baru = uniqid() . '.' . $ekstensiGambar;
+    $gambar = $nama_file_baru;
+
+    // Pengecekan gambar
+    $ukuran = $_FILES["foto_produk"]["size"];
+    $tipeGambarAman = ['jpg', 'jpeg', 'png', 'gif'];
+    $tipe = $_FILES["foto_produk"]["type"];
+
+    if ($ukuran > 5000000) {
+        echo "<script>
+                alert('Ukuran file terlalu besar! Maksimal 5MB');
+                document.location.href = 'tambah.php';
+            </script>";
+        return false;
+    }
+
+    if (!in_array($ekstensiGambar, $tipeGambarAman)) {
+        echo "<script>
+                alert('Tipe file tidak didukung! Hanya dapat mengunggah file gambar (jpg, jpeg, png, gif)');
+                document.location.href = 'tambah.php';
+            </script>";
+        return false;
+    }
+
+    move_uploaded_file($_FILES['foto_produk']['tmp_name'], $targetDir . $gambar);
+
     // Simpan data ke database
-    $sql = "INSERT INTO produk (id_produk,foto_produk,nama_produk, stok_produk, harga_produk, tgl_prod, tgl_exp) VALUES ('$id_produk','$foto_produk','$nama_produk', '$stok_produk', '$harga_produk', '$tgl_prod', '$tgl_exp')";
+    $sql = "INSERT INTO produk (id_produk, foto_produk, nama_produk, stok_produk, harga_produk, tgl_prod, tgl_exp) VALUES ('$id_produk', '$gambar', '$nama_produk', '$stok_produk', '$harga_produk', '$tgl_prod', '$tgl_exp')";
 
     if (mysqli_query($koneksi, $sql)) {
         // Redirect ke halaman produk setelah berhasil menambahkan produk
         header("Location: index.php");
         exit();
     } else {
-        $error = "Error: " . mysqli_error($koneksi);
+        echo "Error: " . mysqli_error($koneksi);
     }
 }
 ?>
+
 
 <!doctype html>
 <html lang="en">

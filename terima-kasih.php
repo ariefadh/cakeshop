@@ -1,6 +1,6 @@
 <?php
 // Koneksi ke database (sesuaikan dengan konfigurasi database Anda)
-include 'unit.php'
+include 'unit.php';
 
 // Ambil data dari form checkout
 $nama_customer = $_POST['nama_customer'];

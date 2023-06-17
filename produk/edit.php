@@ -116,8 +116,12 @@ if (isset($_GET['id_produk'])) {
                                 <input type="text" class="form-control" id="id_produk" name="id_produk" value="<?= $row['id_produk'] ?>" required>
                                 <div class="mb-3">
                                     <label for="foto_produk" class="form-label">Upload Foto</label>
-                                    <input type="file" class="form-control" id="foto_produk" name="foto_produk" accept="image/*" required>
+                                    <input type="file" class="form-control" id="foto_produk" name="foto_produk" accept="image/*">
+                                    <?php if (!empty($row['foto_produk'])) { ?>
+                                        <span class="file-name"><?= $row['foto_produk']; ?></span>
+                                    <?php } ?>
                                 </div>
+
 
                                 <div class="mb-3">
                                     <label for="nama_produk" class="form-label">Nama Produk</label>

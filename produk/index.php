@@ -105,7 +105,7 @@ require 'unit.php';
                       </td>
                       <td><?= $row['nama_produk']; ?></td>
                       <td><?= $row['stok_produk']; ?></td>
-                      <td>Rp <?= number_format($row['harga_produk'],0,",","."); ?></td>
+                      <td>Rp <?= number_format($row['harga_produk'], 0, ",", "."); ?></td>
                       <td><?= $row['tgl_prod']; ?></td>
                       <td><?= $row['tgl_exp']; ?></td>
                       <td>
@@ -151,18 +151,19 @@ require 'unit.php';
   <script>
     $(document).ready(function() {
       $("#tabelProduk").DataTable({
-        scrollY: 200,
+        scrollY: 400,
         scrollX: true,
-        columnDefs: [
+        scrollCollapse: true,
+        responsive: true,
+        columnDefs: [{
+            orderable: false,
+            targets: [2, 8]
+          },
           {
-          orderable: false,
-          targets: [2, 8]
-        }, 
-        {
-          targets:[6, 7],
-          render: DataTable.render.datetime('YYYY-MM-DD', 'D MMM YY', 'en'),
-        } ,
-      ],
+            targets: [6, 7],
+            render: DataTable.render.datetime('YYYY-MM-DD', 'D MMM YY', 'en'),
+          },
+        ],
       });
     });
   </script>
